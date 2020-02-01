@@ -47,7 +47,7 @@ class App extends Component {
   };
 
   click = () => {
-    this.socket.binary(true).emit('uploadImage');
+    //this.socket.binary(true).emit('uploadImage');
     // addItem('living.items.keuken.items', {
     //   type: type.generic,
     //   title: 'hoiqsdf',

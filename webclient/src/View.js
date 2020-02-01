@@ -4,7 +4,6 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { type } from './model/types';
 
 const styles = theme => ({
   root: {
@@ -14,50 +13,52 @@ const styles = theme => ({
   }
 });
 
-function mapItems(items) {
-  return Object.values(items).map(item => {
-    if (item.type === type.group) {
+class View extends Component {
+
+  itemClick = (e) => {
+    console.log("itemClick", e);
+  }
+
+  onNodeClick = (path, item) => {
+    console.log(path, item);
+  }
+
+  mapGroups = (path, groups) => {
+    return groups.map(group => {
       return (
-        <TreeItem key={item.title} nodeId={item.title} label={item.title}>
-          {mapItems(item.items)}
+        <TreeItem key={group.id} nodeId={group.id} label={group.title}
+        >
+          {this.mapGroups(path, group.groups)}
+          {this.mapItems(path, group.items)}
         </TreeItem>
       );
-    }
-    return (
-      <TreeItem
-        key={item.title}
-        nodeId={item.title}
-        label={item.title}
-      ></TreeItem>
-    );
-  });
-}
+    });
+  }
 
-class View extends Component {
+  mapItems = (path, items) => {
+    return items.map(item => {
+      return (
+        <TreeItem
+          key={item.id}
+          nodeId={item.id}
+          label={item.title}
+          onClick={() => this.onNodeClick(path, item)}
+        />
+      );
+    });
+  }
+
   render() {
     const { classes, db } = this.props;
-
-    const views = mapItems(db);
+    const views = db.groups ? this.mapGroups("", db.groups) : null;
     return (
       <TreeView
         className={classes.root}
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
+        onNodeToggle={this.itemClick}
       >
         {views}
-        {/* <TreeItem nodeId="1" label="Applications">
-          <TreeItem nodeId="2" label="Calendar" />
-          <TreeItem nodeId="3" label="Chrome" />
-          <TreeItem nodeId="4" label="Webstorm" />
-        </TreeItem>
-        <TreeItem nodeId="5" label="Documents">
-          <TreeItem nodeId="6" label="Material-UI">
-            <TreeItem nodeId="7" label="src">
-              <TreeItem nodeId="8" label="index.js" />
-              <TreeItem nodeId="9" label="tree-view.js" />
-            </TreeItem>
-          </TreeItem>
-        </TreeItem> */}
       </TreeView>
     );
   }
