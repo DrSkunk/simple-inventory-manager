@@ -1,0 +1,27 @@
+{
+  "name": "lowdb-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "debug": "nodemon --inspect=0.0.0.0:9229 --exec babel-node src/index.js --ignore 'db.json'",
+    "build": "babel src -d dist"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.4",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "mkdirp": "^1.0.3",
+    "multer": "^1.4.2",
+    "nanoid": "^2.1.10",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "nodemon": "^2.0.2"
+  }
+}

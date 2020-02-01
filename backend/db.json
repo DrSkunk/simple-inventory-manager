@@ -1,0 +1,161 @@
+{
+  "groups": [
+    {
+      "id": "fs0yg4H-alN5IA3_Qwzho",
+      "title": "testgroup",
+      "description": "description",
+      "groups": [
+        {
+          "id": "iJy6-b2OhPLO1SNtSPG_D",
+          "title": "testgroup",
+          "description": "description",
+          "groups": [
+            {
+              "id": "Du-zqC-9d2Nn6AgssYPZO",
+              "title": "testgroup",
+              "description": "description",
+              "groups": [],
+              "items": []
+            },
+            {
+              "id": "7WaS_e0PTayfyagS_IrAI",
+              "title": "testgroup",
+              "description": "description",
+              "groups": [
+                {
+                  "id": "sX4Cd2eXfuBlU39BZ24Wx",
+                  "title": "testgroup",
+                  "description": "description",
+                  "groups": [],
+                  "items": []
+                },
+                {
+                  "id": "HvTaQX-e_06TWlLxudXda",
+                  "title": "testgroup",
+                  "description": "description",
+                  "groups": [],
+                  "items": []
+                }
+              ],
+              "items": [
+                {
+                  "id": "OQ_eo5BLjqLtk9e4HNA0_",
+                  "title": "tester",
+                  "description": "description",
+                  "barcode": "12345",
+                  "price": "25",
+                  "currency": "EUR",
+                  "files": [],
+                  "pictures": []
+                },
+                {
+                  "id": "hHpqP3t-1vDWT7Jzs5-nD",
+                  "title": "tester",
+                  "description": "description",
+                  "barcode": "12345",
+                  "price": "25",
+                  "currency": "EUR",
+                  "files": [],
+                  "pictures": []
+                },
+                {
+                  "id": "vh-W5VwrXNCW8xDMJAs-V",
+                  "title": "tester",
+                  "description": "description",
+                  "barcode": "12345",
+                  "price": "25",
+                  "currency": "EUR",
+                  "files": [],
+                  "pictures": []
+                },
+                {
+                  "id": "TU01fX_--dAhcwKaDrtfU",
+                  "title": "tester",
+                  "description": "description",
+                  "barcode": "12345",
+                  "price": "25",
+                  "currency": "EUR",
+                  "files": [],
+                  "pictures": []
+                },
+                {
+                  "id": "KEcjw5sWZPiUeTyEUu3ME",
+                  "title": "tester",
+                  "description": "description",
+                  "barcode": "12345",
+                  "price": "25",
+                  "currency": "EUR",
+                  "files": [],
+                  "pictures": []
+                },
+                {
+                  "id": "r-TaBqmPPaK7u6n0nciXa",
+                  "title": "title",
+                  "description": "desc",
+                  "barcode": "12345",
+                  "price": "35",
+                  "currency": "EUR",
+                  "url": null,
+                  "files": [],
+                  "pictures": [
+                    "hey.png"
+                  ]
+                },
+                {
+                  "id": "SXYA-AtrgiBcqswpm2tCg",
+                  "title": "title",
+                  "description": "desc",
+                  "barcode": "12345",
+                  "price": "35",
+                  "currency": "EUR",
+                  "url": null,
+                  "files": [],
+                  "pictures": [
+                    "hey.png"
+                  ]
+                },
+                {
+                  "id": "n6PhlH3QgU65XflLiPaEu",
+                  "title": "title",
+                  "description": "desc",
+                  "barcode": "12345",
+                  "price": "35",
+                  "currency": "EUR",
+                  "url": null,
+                  "files": [],
+                  "pictures": [
+                    "Screenshot 2020-01-30 at 14.50.46.png"
+                  ]
+                }
+              ]
+            }
+          ],
+          "items": []
+        }
+      ],
+      "items": []
+    },
+    {
+      "id": "-cyczcOgPu0fVoDVhGbHN",
+      "title": "testgroup",
+      "description": "description",
+      "groups": [],
+      "items": []
+    },
+    {
+      "id": "GNw9Iw6EFWW5NUybHsSl-",
+      "title": "testgroup",
+      "description": "description",
+      "groups": [],
+      "items": []
+    },
+    {
+      "id": "qZJpD8vL8zkrkSZL-f9rv",
+      "title": "testgroup",
+      "description": "description",
+      "groups": [],
+      "items": []
+    }
+  ],
+  "receipts": []
+}

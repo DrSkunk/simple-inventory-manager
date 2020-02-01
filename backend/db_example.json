@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "id": "MJMLKdfmskfjqmslkd",
+      "title": "Living",
+      "description": "Living",
+      "groups": [
+        {
+          "id": "MDDDDFEFELKJMDLKE",
+          "title": "Bureau",
+          "description": "Bureau",
+          "items": [
+            {
+              "id": "qsdfefeefsqfd",
+              "title": "tester",
+              "description": "description",
+              "barcode": "12345678",
+              "price": "price",
+              "currency": "dollar",
+              "pictures": [
+                "123.jpg"
+              ],
+              "url": "http://example.com",
+              "files": [
+                "manual.pdf"
+              ]
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "kdid!72hjhçf",
+          "title": "item",
+          "description": "description",
+          "price": "price",
+          "picture": "picture",
+          "url": null
+        },
+        {
+          "id": "212309jlskjdfmiqjsf",
+          "title": "tester",
+          "description": "description",
+          "price": "price",
+          "picture": "picture",
+          "url": null
+        }
+      ]
+    }
+  ],
+  "receipts": []
+}
