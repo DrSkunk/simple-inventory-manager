@@ -2,8 +2,8 @@
   "groups": [
     {
       "id": "fs0yg4H-alN5IA3_Qwzho",
-      "title": "testgroup",
-      "description": "description",
+      "title": "testgrouper2",
+      "description": "hey",
       "groups": [
         {
           "id": "iJy6-b2OhPLO1SNtSPG_D",
@@ -18,7 +18,7 @@
               "items": []
             },
             {
-              "id": "7WaS_e0PTayfyagS_IrAI",
+              "id": "DJdSenknND23jKJH",
               "title": "testgroup",
               "description": "description",
               "groups": [
@@ -130,10 +130,34 @@
               ]
             }
           ],
-          "items": []
+          "items": [
+            {
+              "id": "lV-H74F9itAaNM3K-d3e5",
+              "title": "title",
+              "description": "desc",
+              "barcode": "12345",
+              "price": 35,
+              "currency": "EUR",
+              "url": "",
+              "files": [],
+              "pictures": [
+                "Screenshot 2020-01-30 at 14.45.37.png"
+              ]
+            }
+          ]
         }
       ],
-      "items": []
+      "items": [
+        {
+          "id": "93JD83LjqLtk9e4HNA0_",
+          "title": "testerdetestdetest",
+          "description": "description",
+          "barcode": "123456",
+          "price": 30,
+          "currency": "EUR",
+          "url": ""
+        }
+      ]
     },
     {
       "id": "-cyczcOgPu0fVoDVhGbHN",

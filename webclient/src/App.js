@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
+import EditIcon from '@material-ui/icons/Edit';
+import DoneIcon from '@material-ui/icons/Done';
+
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 import Sidebar from './components/Sidebar';
 import Node from './components/Node';
 import SocketWatcher from './components/SocketWatcher';
+import Header from './components/Header';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     display: 'flex'
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth
   },
   drawer: {
     width: drawerWidth,
@@ -39,7 +44,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.socket = io('http://localhost:8080');
-    console.log(this.socket);
     this.socket.on('config', config => {
       console.log('Received new db state', config);
       this.setState({ db: config });
@@ -50,18 +54,18 @@ class App extends Component {
     selectedNode: null
   };
 
-  onChange = e => {
+  onInputChange = e => {
     const blob = e.target.files[0];
     console.log(blob);
     const toSend = {
-      path: 'fs0yg4H-alN5IA3_Qwzho.iJy6-b2OhPLO1SNtSPG_D.7WaS_e0PTayfyagS_IrAI',
+      path: 'fs0yg4H-alN5IA3_Qwzho.iJy6-b2OhPLO1SNtSPG_D',
       item: {
         title: 'title',
         description: 'desc',
         barcode: '12345',
-        price: '35',
+        price: 35,
         currency: 'EUR',
-        url: null,
+        url: '',
         files: [],
         pictures: [{ filename: blob.name, blob }]
       }
@@ -75,21 +79,22 @@ class App extends Component {
     this.setState({ selectedNode: { type, path, node } });
   };
 
+  onChange = event => {
+    const { name, value } = event.target;
+    console.log('onchange', name, value);
+    this.setState(state => ({
+      selectedNode: { node: { ...state.selectedNode.node, [name]: value } }
+    }));
+  };
+
   render() {
     const { classes } = this.props;
     const { db, selectedNode } = this.state;
+
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              {selectedNode
-                ? selectedNode.node.title
-                : 'Simple Inventory Manager'}
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <Header selectedNode={selectedNode} onTitleChange={this.onChange} />
         <Drawer
           className={classes.drawer}
           variant="permanent"
@@ -101,11 +106,12 @@ class App extends Component {
           <Divider />
           <Sidebar db={db} selectNode={this.selectNode} />
         </Drawer>
-        <main className={classes.content}>
+        <div className={classes.content}>
           <div className={classes.toolbar} />
-          <Node node={selectedNode} />
+          <input type="file" onChange={this.onInputChange} />
+          <Node node={selectedNode} onChange={this.onChange} />
           <SocketWatcher socket={this.socket} />
-        </main>
+        </div>
       </div>
     );
   }

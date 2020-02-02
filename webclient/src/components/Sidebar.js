@@ -6,11 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 
 const styles = theme => ({
-  root: {
-    height: 216,
-    flexGrow: 1,
-    maxWidth: 400
-  }
+  root: {}
 });
 
 class Sidebar extends Component {
@@ -33,7 +29,7 @@ class Sidebar extends Component {
           onClick={() => this.onNodeSelect(newPath, group, 'group')}
         >
           {this.mapGroups(newPath, group.groups)}
-          {this.mapItems(newPath, group.items)}
+          {/* {this.mapItems(newPath, group.items)} */}
         </TreeItem>
       );
     });
@@ -56,19 +52,13 @@ class Sidebar extends Component {
     const { classes, db } = this.props;
     const views = db.groups ? this.mapGroups('', db.groups) : null;
     return (
-      <div>
-        <TreeView
-          className={classes.root}
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ChevronRightIcon />}
-          // onNodeToggle={this.itemClick}
-        >
-          {views}
-        </TreeView>
-        {/* <div>
-          <pre>{JSON.stringify(this.state.selectedNode, null, 2)}</pre>
-        </div> */}
-      </div>
+      <TreeView
+        className={classes.root}
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpandIcon={<ChevronRightIcon />}
+      >
+        {views}
+      </TreeView>
     );
   }
 }
