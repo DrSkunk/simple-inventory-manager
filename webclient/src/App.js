@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 import io from 'socket.io-client';
-import { getConfig, addItem } from './model/';
-import { type } from './model/types';
-import View from './View';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import Sidebar from './components/Sidebar';
+import Node from './components/Node';
+import SocketWatcher from './components/SocketWatcher';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
-  root: {}
+  root: {
+    display: 'flex'
+  },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3)
+  },
+  toolbar: theme.mixins.toolbar
 });
 
 class App extends Component {
@@ -22,7 +47,7 @@ class App extends Component {
   }
   state = {
     db: {},
-    file: null
+    selectedNode: null
   };
 
   onChange = e => {
@@ -46,26 +71,41 @@ class App extends Component {
     this.socket.emit('addItem', toSend);
   };
 
-  click = () => {
-    //this.socket.binary(true).emit('uploadImage');
-    // addItem('living.items.keuken.items', {
-    //   type: type.generic,
-    //   title: 'hoiqsdf',
-    //   description: 'description',
-    //   price: 'price',
-    //   picture: 'picture',
-    //   url: null
-    // }).then(res => console.log('addItem res', res));
+  selectNode = (type, path, node) => {
+    this.setState({ selectedNode: { type, path, node } });
   };
 
   render() {
     const { classes } = this.props;
-    const { db } = this.state;
+    const { db, selectedNode } = this.state;
     return (
       <div className={classes.root}>
-        roboto test<Button onClick={this.click}>test</Button>
-        <input type="file" onChange={this.onChange} />
-        <View db={db} />
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" noWrap>
+              {selectedNode
+                ? selectedNode.node.title
+                : 'Simple Inventory Manager'}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <Divider />
+          <Sidebar db={db} selectNode={this.selectNode} />
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Node node={selectedNode} />
+          <SocketWatcher socket={this.socket} />
+        </main>
       </div>
     );
   }
