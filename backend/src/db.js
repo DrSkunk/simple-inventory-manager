@@ -53,6 +53,51 @@ class Database {
     console.log('added item', addedItem, 'at path', path);
   }
 
+  updateItem(path, item) {
+    const {
+      id,
+      title,
+      description,
+      barcode,
+      price,
+      currency,
+      url,
+      files,
+      pictures
+    } = item;
+
+    const parent = this.getGroup(path);
+
+    console.log(parent.value());
+
+    parent
+      .get('items')
+      .find({ id })
+      .assign(
+        { title },
+        { description },
+        { barcode },
+        { price },
+        { currency },
+        { url },
+        { files },
+        { pictures }
+      )
+      .write();
+
+    // const addedItem = this.getGroup(path)
+    //   .get('items')
+    //   .find({ id: item.id })
+    //   .value();
+
+    // if (!addedItem) {
+    //   throw new Error(
+    //     "Item didn't persist to the database, maybe an invalid path?"
+    //   );
+    // }
+    // console.log('added item', addedItem, 'at path', path);
+  }
+
   addGroup(path, group) {
     this.getGroup(path)
       .get('groups')
@@ -69,6 +114,14 @@ class Database {
       );
     }
     console.log('added group', addedGroup, 'at path', path);
+  }
+
+  updateGroup(path, group) {
+    const { title, description } = group;
+    const updatedGroup = this.getGroup(path)
+      .assign({ title }, { description })
+      .write();
+    console.log('updated Group', updatedGroup, 'at path', path);
   }
 }
 
