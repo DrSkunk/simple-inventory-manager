@@ -5,11 +5,28 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/index.js",
-    "debug": "nodemon --inspect=0.0.0.0:9229 --exec babel-node src/index.js --ignore 'db.json'",
-    "build": "babel src -d dist"
+    "debug": "babel-node --inspect=0.0.0.0:9229 src/index.js",
+    "debug:watch": "nodemon --inspect=0.0.0.0:9229 --exec babel-node src/index.js --ignore 'db.json'",
+    "build": "babel src -d dist",
+    "test": "ava"
+  },
+  "ava": {
+    "babel": true,
+    "files": [
+      "./test/**/*.test.js"
+    ],
+    "require": [
+      "@babel/register",
+      "@babel/polyfill"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test",
+      "pre-push": "yarn test"
+    }
   },
   "dependencies": {
-    "@babel/core": "^7.8.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -21,8 +38,14 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.6",
+    "ava": "^3.4.0",
+    "husky": "^4.2.3",
     "nodemon": "^2.0.2"
   }
 }

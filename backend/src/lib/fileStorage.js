@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { storageDirectory } from './config.json';
+import config from './config';
 import mkdirp from 'mkdirp';
 
 export function writeFilesAndGetFilenames(saveDir, list) {
@@ -10,7 +10,7 @@ export function writeFilesAndGetFilenames(saveDir, list) {
   });
 }
 export function getStorageDirectory(path) {
-  return storageDirectory + path.replace('.', '/');
+  return config.storageDirectory.storageDirectory + path.replace('.', '/');
 }
 
 export function createDirectory(saveDir) {

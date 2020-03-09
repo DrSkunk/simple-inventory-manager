@@ -3,8 +3,8 @@ import {
   writeFilesAndGetFilenames,
   getStorageDirectory,
   createDirectory
-} from './storage';
-import db from './db';
+} from '../lib/fileStorage';
+import db from '../lib/jsonDb';
 
 function checkFields(path, item) {
   if (!path || !item || !item.title) {
@@ -31,9 +31,11 @@ function checkFields(path, item) {
   }
 }
 
-export function addItem(data) {
-  const { path, item } = data;
+export function getItem(path, itemId) {
+  return db.getItem(path, itemId);
+}
 
+export function addItem(path, item) {
   checkFields(path, item);
 
   // Copy only the selected items to a new object and add a new id

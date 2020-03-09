@@ -1,5 +1,7 @@
 import Fuse from 'fuse.js';
 
+import db from './jsonDb';
+
 const options = {
   shouldSort: true,
   threshold: 0.6,
@@ -10,7 +12,7 @@ const options = {
   keys: ['title', 'description', 'barcode', 'files', 'pictures']
 };
 
-export default class Search {
+class Search {
   constructor(list) {
     this.setList(list);
   }
@@ -23,3 +25,5 @@ export default class Search {
     return this.fuse.search(input);
   }
 }
+
+export default new Search(db.getSearchableState());

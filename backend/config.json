@@ -1,4 +1,5 @@
 {
+  "databaseFile": "db.json",
   "storageDirectory": "./uploads/",
   "port": 8080,
   "hostWebClient": true,

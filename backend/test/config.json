@@ -1,0 +1,6 @@
+{
+  "storageDirectory": "./testuploads/",
+  "port": 9090,
+  "hostWebClient": false,
+  "webClientPath": "../webclient/build"
+}
