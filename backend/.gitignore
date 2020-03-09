@@ -2,6 +2,9 @@
 dist/
 uploads/
 
+#Mac file
+.DS_Store
+
 # Logs
 logs
 *.log
