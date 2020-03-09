@@ -6,7 +6,6 @@ function checkFields(path, group) {
     throw new Error('path, group and group title should be supplied');
   }
   [path, group.title, group.description].forEach(field => {
-    console.log('field', field, typeof field);
     if (typeof field !== 'string') {
       throw new Error(
         'path, group title and group description must be strings'

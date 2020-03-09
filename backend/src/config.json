@@ -1,3 +1,6 @@
 {
-  "storageDirectory": "./uploads/"
+  "storageDirectory": "./uploads/",
+  "port": 8080,
+  "hostWebClient": true,
+  "webClientPath": "../webclient/build"
 }

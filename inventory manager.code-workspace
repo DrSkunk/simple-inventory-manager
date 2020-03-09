@@ -5,6 +5,12 @@
     },
     {
       "path": "webclient"
+    },
+    {
+      "path": "FlutterInventoryManager"
+    },
+    {
+      "path": "ReactNativeInventoryManager"
     }
   ],
   "settings": {}

@@ -18,6 +18,24 @@ class Database {
     return this.db.getState();
   }
 
+  getSearchableState() {
+    const searchableState = [];
+    function flatten(groups) {
+      groups.forEach(group => {
+        flatten(group.groups);
+        searchableState.push({
+          id: group.id,
+          title: group.title,
+          description: group.description
+        });
+        group.items.forEach(item => searchableState.push(item));
+      });
+    }
+
+    flatten(this.db.getState().groups);
+    return searchableState;
+  }
+
   getGroup(path) {
     // split on an empty array gives an array with one item, so this check is needed
     const splitPath = path === '' ? [] : path.split('.');
@@ -68,8 +86,6 @@ class Database {
 
     const parent = this.getGroup(path);
 
-    console.log(parent.value());
-
     parent
       .get('items')
       .find({ id })
@@ -84,18 +100,6 @@ class Database {
         { pictures }
       )
       .write();
-
-    // const addedItem = this.getGroup(path)
-    //   .get('items')
-    //   .find({ id: item.id })
-    //   .value();
-
-    // if (!addedItem) {
-    //   throw new Error(
-    //     "Item didn't persist to the database, maybe an invalid path?"
-    //   );
-    // }
-    // console.log('added item', addedItem, 'at path', path);
   }
 
   addGroup(path, group) {
