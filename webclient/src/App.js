@@ -44,7 +44,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.socket = io('http://localhost:8080');
-    this.socket.on('config', config => {
+    this.socket.on('inventory', config => {
       console.log('Received new db state', config);
       this.setState({ db: config });
     });

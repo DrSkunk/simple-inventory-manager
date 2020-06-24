@@ -180,6 +180,15 @@ class Database {
       .write();
   }
 
+  removeItem(path) {
+    const parent = this.getParentGroup(path);
+    const itemId = path.split('.').pop();
+    parent
+      .get('items')
+      .remove({ id: itemId })
+      .write();
+  }
+
   clearItemsFromGroup(path) {
     const updatedGroup = this.getGroup(path)
       .assign({ items: [] })

@@ -1,40 +1,40 @@
-import socketIo from "socket.io";
-import { addItem, updateItem, getItem } from "../models/item";
-import { addGroup, updateGroup } from "../models/group";
-import db from "./jsonDb";
-import Search from "./Search";
+import socketIo from 'socket.io';
+import { addItem, updateItem, getItem } from '../models/item';
+import { addGroup, updateGroup } from '../models/group';
+import db from './jsonDb';
+import Search from './Search';
 
 export default class SocketServer {
   constructor(httpServer) {
-    console.log("Initializing socket server");
+    console.log('Initializing socket server');
     this.io = socketIo(httpServer);
-    this.io.on("connection", function(socket) {
-      console.log("a user connected");
-      socket.emit("config", db.getState());
-      socket.on("addItem", data => {
+    this.io.on('connection', function(socket) {
+      console.log('a user connected');
+      socket.emit('inventory', db.getState());
+      socket.on('addItem', data => {
         addItem(data);
-        sendUpdatedConfigToAllClients();
+        sendUpdatedInventoryToAllClients();
       });
-      socket.on("updateItem", data => {
+      socket.on('updateItem', data => {
         updateItem(data);
-        sendUpdatedConfigToAllClients();
+        sendUpdatedInventoryToAllClients();
       });
-      socket.on("addGroup", data => {
+      socket.on('addGroup', data => {
         addGroup(data);
-        sendUpdatedConfigToAllClients();
+        sendUpdatedInventoryToAllClients();
       });
-      socket.on("updateGroup", data => {
+      socket.on('updateGroup', data => {
         updateGroup(data);
-        sendUpdatedConfigToAllClients();
+        sendUpdatedInventoryToAllClients();
       });
-      socket.on("search", input => {
-        socket.emit("searchResult", Search.search(input));
+      socket.on('search', input => {
+        socket.emit('searchResult', Search.search(input));
       });
     });
   }
 
-  sendUpdatedConfigToAllClients() {
-    console.log("sendUpdatedConfigToAllClients");
-    this.io.emit("config", db.getState());
+  sendUpdatedInventoryToAllClients() {
+    console.log('sendUpdatedInventoryToAllClients');
+    this.io.emit('inventory', db.getState());
   }
 }

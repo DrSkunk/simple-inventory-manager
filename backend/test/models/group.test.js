@@ -125,20 +125,8 @@ test('add group', t => {
 test('update group', t => {
   const initialState = db.getState();
 
-  // No title in group object
+  // Invalid title in group object
   let error = t.throws(
-    () => {
-      updateGroup(initialState.groups[0].id, {});
-    },
-    { instanceOf: ParameterError }
-  );
-
-  t.is(error.errorObject.source.pointer, '/data/attributes/group.title');
-
-  t.deepEqual(db.getState(), initialState);
-
-  // invalid title in group object
-  error = t.throws(
     () => {
       updateGroup(initialState.groups[0].id, { title: {} });
     },
@@ -149,10 +137,36 @@ test('update group', t => {
 
   t.deepEqual(db.getState(), initialState);
 
-  // t.deepEqual(db.getState(), {
-  //   groups: [],
-  //   receipts: []
-  // });
+  // Invalid description in group object
+  error = t.throws(
+    () => {
+      updateGroup(initialState.groups[0].id, { description: {} });
+    },
+    { instanceOf: ParameterError }
+  );
+
+  t.is(error.errorObject.source.pointer, '/data/attributes/group.description');
+
+  t.deepEqual(db.getState(), initialState);
+
+  // Update title
+  updateGroup(initialState.groups[0].id, { title: 'newTitle' });
+  t.is(db.getState().groups[0].title, 'newTitle');
+
+  // Update description
+  updateGroup(initialState.groups[0].id, { description: 'new description' });
+  t.is(db.getState().groups[0].description, 'new description');
+
+  // Update title and description
+  updateGroup(
+    initialState.groups[0].id + '.' + initialState.groups[0].groups[0].id,
+    {
+      title: 'newTitle2',
+      description: 'newDescription2'
+    }
+  );
+  t.is(db.getState().groups[0].groups[0].title, 'newTitle2');
+  t.is(db.getState().groups[0].groups[0].description, 'newDescription2');
 });
 
 test('remove group', t => {

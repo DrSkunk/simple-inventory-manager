@@ -106,3 +106,8 @@ export function updateItem(data) {
 
   db.updateItem(path, copiedItem);
 }
+
+export function removeItem(path) {
+  //TODO Check if valid path
+  db.removeItem(path);
+}

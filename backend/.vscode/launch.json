@@ -24,6 +24,19 @@
       "skipFiles": ["<node_internals>/**"],
       "restart": true,
       "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug AVA test file",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ava",
+      "runtimeArgs": ["debug", "--break", "--serial", "${file}"],
+      "port": 9229,
+      "outputCapture": "std",
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
     }
   ]
 }
